@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sjp/TinyWebserver/httpconn/httpconn.hpp
+unordered_map
+-
+vector
+-
+sys/socket.h
+-
+iostream
+-
+string
+-
+sys/types.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+unistd.h
+-
+sys/sendfile.h
+-
+sys/epoll.h
+-
+../lst_timer/lst_timer.h
+/home/sjp/TinyWebserver/lst_timer/lst_timer.h
+
+/home/sjp/TinyWebserver/httpconn/samples/sample_request_unittest.cc
+gtest/gtest.h
+-
+../httpconn.hpp
+/home/sjp/TinyWebserver/httpconn/httpconn.hpp
+string.h
+/home/sjp/TinyWebserver/httpconn/samples/string.h
+
+/home/sjp/TinyWebserver/lst_timer/lst_timer.h
+iostream
+-
+

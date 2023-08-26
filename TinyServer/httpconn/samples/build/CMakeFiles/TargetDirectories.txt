@@ -1,0 +1,3 @@
+/home/sjp/TinyWebserver/httpconn/samples/build/CMakeFiles/rebuild_cache.dir
+/home/sjp/TinyWebserver/httpconn/samples/build/CMakeFiles/edit_cache.dir
+/home/sjp/TinyWebserver/httpconn/samples/build/CMakeFiles/sample1.dir

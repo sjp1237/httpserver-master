@@ -1,0 +1,789 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="102" onload="init(evt)" viewBox="0 0 1200 102" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:17px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	"use strict";
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
+		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
+		unzoombtn = document.getElementById("unzoom");
+		matchedtxt = document.getElementById("matched");
+		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
+		currentSearchTerm = null;
+
+		// use GET parameters to restore a flamegraphs state.
+		var params = get_params();
+		if (params.x && params.y)
+			zoom(find_group(document.querySelector('[x="' + params.x + '"][y="' + params.y + '"]')));
+                if (params.s) search(params.s);
+	}
+
+	// event listeners
+	window.addEventListener("click", function(e) {
+		var target = find_group(e.target);
+		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
+			if (target.classList.contains("parent")) unzoom(true);
+			zoom(target);
+			if (!document.querySelector('.parent')) {
+				// we have basically done a clearzoom so clear the url
+				var params = get_params();
+				if (params.x) delete params.x;
+				if (params.y) delete params.y;
+				history.replaceState(null, null, parse_params(params));
+				unzoombtn.classList.add("hide");
+				return;
+			}
+
+			// set parameters for zoom state
+			var el = target.querySelector("rect");
+			if (el && el.attributes && el.attributes.y && el.attributes._orig_x) {
+				var params = get_params()
+				params.x = el.attributes._orig_x.value;
+				params.y = el.attributes.y.value;
+				history.replaceState(null, null, parse_params(params));
+			}
+		}
+		else if (e.target.id == "unzoom") clearzoom();
+		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
+	}, false)
+
+	// mouse-over for info
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = "Function: " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = ' ';
+	}, false)
+
+	// ctrl-F for search
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+		else if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
+	// functions
+	function get_params() {
+		var params = {};
+		var paramsarr = window.location.search.substr(1).split('&');
+		for (var i = 0; i < paramsarr.length; ++i) {
+			var tmp = paramsarr[i].split("=");
+			if (!tmp[0] || !tmp[1]) continue;
+			params[tmp[0]]  = decodeURIComponent(tmp[1]);
+		}
+		return params;
+	}
+	function parse_params(params) {
+		var uri = "?";
+		for (var key in params) {
+			uri += key + '=' + encodeURIComponent(params[key]) + '&';
+		}
+		if (uri.slice(-1) == "&")
+			uri = uri.substring(0, uri.length - 1);
+		if (uri == '?')
+			uri = window.location.href.split('?')[0];
+		return uri;
+	}
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
+	}
+	function find_group(node) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.id == "frames") return node;
+		return find_group(parent);
+	}
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_" + attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes.width.value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * 12 * 0.59) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		var sl = t.getSubStringLength(0, txt.length);
+		// check if only whitespace or if we can fit the entire string into width w
+		if (/^ *$/.test(txt) || sl < w)
+			return;
+
+		// this isn't perfect, but gives a good starting point
+		// and avoids calling getSubStringLength too often
+		var start = Math.floor((w/sl) * txt.length);
+		for (var x = start; x > 0; x = x-2) {
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - 10) * ratio + 10;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
+			}
+		}
+
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - 10, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = 10;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - (10 * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) {
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * 10) / width;
+
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+
+		unzoombtn.classList.remove("hide");
+
+		var el = document.getElementById("frames").children;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
+			var upstack;
+			// Is it an ancestor
+			if (0 == 0) {
+				upstack = parseFloat(a.y.value) > ymin;
+			} else {
+				upstack = parseFloat(a.y.value) < ymin;
+			}
+			if (upstack) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
+					e.classList.add("parent");
+					zoom_parent(e);
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.classList.add("hide");
+			}
+			// Children maybe
+			else {
+				// no common path
+				if (ex < xmin || ex + fudge >= xmax) {
+					e.classList.add("hide");
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					update_text(e);
+				}
+			}
+		}
+		search();
+	}
+	function unzoom(dont_update_text) {
+		unzoombtn.classList.add("hide");
+		var el = document.getElementById("frames").children;
+		for(var i = 0; i < el.length; i++) {
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
+			zoom_reset(el[i]);
+			if(!dont_update_text) update_text(el[i]);
+		}
+		search();
+	}
+	function clearzoom() {
+		unzoom();
+
+		// remove zoom state
+		var params = get_params();
+		if (params.x) delete params.x;
+		if (params.y) delete params.y;
+		history.replaceState(null, null, parse_params(params));
+	}
+
+	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
+	function reset_search() {
+		var el = document.querySelectorAll("#frames rect");
+		for (var i = 0; i < el.length; i++) {
+			orig_load(el[i], "fill")
+		}
+		var params = get_params();
+		delete params.s;
+		history.replaceState(null, null, parse_params(params));
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\nPress Ctrl-i to toggle case sensitivity", "");
+			if (term != null) search(term);
+		} else {
+			reset_search();
+			searching = 0;
+			currentSearchTerm = null;
+			searchbtn.classList.remove("show");
+			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.classList.add("hide");
+			matchedtxt.firstChild.nodeValue = ""
+		}
+	}
+	function search(term) {
+		if (term) currentSearchTerm = term;
+
+		var re = new RegExp(currentSearchTerm, ignorecase ? 'i' : '');
+		var el = document.getElementById("frames").children;
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes.width.value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes.x.value);
+				orig_save(rect, "fill");
+				rect.attributes.fill.value = "rgb(230,0,230)";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
+		}
+		if (!searching)
+			return;
+		var params = get_params();
+		params.s = currentSearchTerm;
+		history.replaceState(null, null, parse_params(params));
+
+		searchbtn.classList.add("show");
+		searchbtn.firstChild.nodeValue = "Reset Search";
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
+		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+			return a - b;
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw - fudge) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.classList.remove("hide");
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+	}
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="102.0" fill="url(#background)"  />
+<text id="title" x="600.00" y="24" >Flame Graph</text>
+<text id="details" x="10.00" y="85" > </text>
+<text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
+<text id="search" x="1090.00" y="24" >Search</text>
+<text id="ignorecase" x="1174.00" y="24" >ic</text>
+<text id="matched" x="1090.00" y="85" > </text>
+<g id="frames">
+<g >
+<title>Unrecognized line:     -L, --Latency         show latency attributes (irqs/preemption disabled, etc) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (27 samples, 0.63%)</title><rect x="1101.9" y="37" width="7.4" height="15.0" fill="rgb(249,68,1)" rx="2" ry="2" />
+<text  x="1104.86" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           only display events for these comms at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (14 samples, 0.33%)</title><rect x="576.9" y="37" width="3.8" height="15.0" fill="rgb(226,160,11)" rx="2" ry="2" />
+<text  x="579.86" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Show the mmap events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (79 samples, 1.84%)</title><rect x="426.2" y="37" width="21.8" height="15.0" fill="rgb(220,48,49)" rx="2" ry="2" />
+<text  x="429.20" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:                           Decode instructions from itrace at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (48 samples, 1.12%)</title><rect x="251.0" y="37" width="13.2" height="15.0" fill="rgb(227,19,4)" rx="2" ry="2" />
+<text  x="254.01" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     or: perf script [&lt;options&gt;] report &lt;script&gt; [script-args] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (8 samples, 0.19%)</title><rect x="1185.0" y="37" width="2.2" height="15.0" fill="rgb(239,16,16)" rx="2" ry="2" />
+<text  x="1188.04" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				p:	    		synthesize power events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (57 samples, 1.33%)</title><rect x="153.5" y="37" width="15.7" height="15.0" fill="rgb(250,34,52)" rx="2" ry="2" />
+<text  x="156.51" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Stop display of callgraph at these symbols at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (87 samples, 2.03%)</title><rect x="468.6" y="37" width="24.0" height="15.0" fill="rgb(215,212,29)" rx="2" ry="2" />
+<text  x="471.61" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:     -l, --list            list available scripts at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (28 samples, 0.65%)</title><rect x="1153.4" y="37" width="7.7" height="15.0" fill="rgb(210,82,9)" rx="2" ry="2" />
+<text  x="1156.37" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           When printing symbols do not display call chain at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (23 samples, 0.54%)</title><rect x="492.6" y="37" width="6.3" height="15.0" fill="rgb(221,169,32)" rx="2" ry="2" />
+<text  x="495.58" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --call-ret-trace[=...] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (33 samples, 0.77%)</title><rect x="580.7" y="37" width="9.1" height="15.0" fill="rgb(210,16,24)" rx="2" ry="2" />
+<text  x="583.72" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     or: perf script [&lt;options&gt;] record &lt;script&gt; [&lt;record-options&gt;] &lt;command&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (7 samples, 0.16%)</title><rect x="1183.1" y="37" width="1.9" height="15.0" fill="rgb(230,63,34)" rx="2" ry="2" />
+<text  x="1186.11" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --symfs &lt;directory&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (88 samples, 2.05%)</title><rect x="975.2" y="37" width="24.2" height="15.0" fill="rgb(241,16,43)" rx="2" ry="2" />
+<text  x="978.15" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:                           Show full source file name path for source lines at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (41 samples, 0.96%)</title><rect x="348.0" y="37" width="11.3" height="15.0" fill="rgb(244,20,52)" rx="2" ry="2" />
+<text  x="350.97" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           only consider these symbols at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (31 samples, 0.72%)</title><rect x="568.3" y="37" width="8.6" height="15.0" fill="rgb(233,174,29)" rx="2" ry="2" />
+<text  x="571.32" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --header-only     Show only data header. at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (45 samples, 1.05%)</title><rect x="654.8" y="37" width="12.4" height="15.0" fill="rgb(210,117,10)" rx="2" ry="2" />
+<text  x="657.81" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -C, --cpu &lt;cpu&gt;       list of cpus to profile at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (15 samples, 0.35%)</title><rect x="1075.1" y="37" width="4.2" height="15.0" fill="rgb(242,52,6)" rx="2" ry="2" />
+<text  x="1078.14" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Instruction Tracing options at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (50 samples, 1.17%)</title><rect x="275.0" y="37" width="13.7" height="15.0" fill="rgb(208,123,1)" rx="2" ry="2" />
+<text  x="277.98" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:   Error: Couldn't find script `script' at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (1 samples, 0.02%)</title><rect x="1187.2" y="37" width="0.3" height="15.0" fill="rgb(207,168,28)" rx="2" ry="2" />
+<text  x="1190.25" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				g[len]:     		synthesize a call chain (use with i or x) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (60 samples, 1.40%)</title><rect x="106.1" y="37" width="16.6" height="15.0" fill="rgb(207,182,29)" rx="2" ry="2" />
+<text  x="109.13" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --call-trace[=...] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (35 samples, 0.82%)</title><rect x="589.8" y="37" width="9.6" height="15.0" fill="rgb(252,135,38)" rx="2" ry="2" />
+<text  x="592.81" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				sNUMBER:    		skip initial number of events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (62 samples, 1.45%)</title><rect x="184.1" y="37" width="17.1" height="15.0" fill="rgb(227,35,38)" rx="2" ry="2" />
+<text  x="187.08" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -c, --comms &lt;comm[,comm...]&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (13 samples, 0.30%)</title><rect x="1120.9" y="37" width="3.5" height="15.0" fill="rgb(252,54,51)" rx="2" ry="2" />
+<text  x="1123.86" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Decode calls from from itrace at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (36 samples, 0.84%)</title><rect x="241.1" y="37" width="9.9" height="15.0" fill="rgb(211,101,13)" rx="2" ry="2" />
+<text  x="244.10" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --kallsyms &lt;file&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (66 samples, 1.54%)</title><rect x="706.3" y="37" width="18.2" height="15.0" fill="rgb(214,134,46)" rx="2" ry="2" />
+<text  x="709.32" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -d, --debug-mode      do various checks like samples ordering and lost events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (16 samples, 0.37%)</title><rect x="1124.4" y="37" width="4.5" height="15.0" fill="rgb(252,192,6)" rx="2" ry="2" />
+<text  x="1127.44" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --show-kernel-path at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (74 samples, 1.73%)</title><rect x="820.9" y="37" width="20.4" height="15.0" fill="rgb(231,213,20)" rx="2" ry="2" />
+<text  x="823.91" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				concatenate multiple options. Default is ibxwpe or cewp at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (64 samples, 1.49%)</title><rect x="56.3" y="37" width="17.6" height="15.0" fill="rgb(245,11,26)" rx="2" ry="2" />
+<text  x="59.27" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				b:	    		synthesize branches events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (52 samples, 1.21%)</title><rect x="27.4" y="37" width="14.3" height="15.0" fill="rgb(243,164,38)" rx="2" ry="2" />
+<text  x="30.35" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Show context switch events (if recorded) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (83 samples, 1.94%)</title><rect x="325.1" y="37" width="22.9" height="15.0" fill="rgb(219,108,38)" rx="2" ry="2" />
+<text  x="328.11" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:         --demangle-kernel at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (38 samples, 0.89%)</title><rect x="609.6" y="37" width="10.5" height="15.0" fill="rgb(226,151,35)" rx="2" ry="2" />
+<text  x="612.64" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           only consider symbols in these pids at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (73 samples, 1.70%)</title><rect x="523.2" y="37" width="20.1" height="15.0" fill="rgb(251,198,43)" rx="2" ry="2" />
+<text  x="526.15" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --inline          Show inline function at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (46 samples, 1.07%)</title><rect x="667.2" y="37" width="12.7" height="15.0" fill="rgb(215,24,26)" rx="2" ry="2" />
+<text  x="670.21" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           generate perf-script.xx script in specified language at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (21 samples, 0.49%)</title><rect x="498.9" y="37" width="5.8" height="15.0" fill="rgb(232,96,49)" rx="2" ry="2" />
+<text  x="501.91" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:  See perf script -l for available scripts. at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (3 samples, 0.07%)</title><rect x="1187.5" y="37" width="0.8" height="15.0" fill="rgb(246,31,29)" rx="2" ry="2" />
+<text  x="1190.52" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     or: perf script [&lt;options&gt;] &lt;top-script&gt; [script-args] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (10 samples, 0.23%)</title><rect x="1180.4" y="37" width="2.7" height="15.0" fill="rgb(217,103,25)" rx="2" ry="2" />
+<text  x="1183.36" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --per-event-dump  Dump trace output to files named by the monitored events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (71 samples, 1.66%)</title><rect x="781.5" y="37" width="19.6" height="15.0" fill="rgb(228,215,45)" rx="2" ry="2" />
+<text  x="784.52" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --time &lt;str&gt;      Time span of interest (start,stop) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (92 samples, 2.15%)</title><rect x="1024.2" y="37" width="25.3" height="15.0" fill="rgb(210,69,40)" rx="2" ry="2" />
+<text  x="1027.18" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:         --show-switch-events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (82 samples, 1.91%)</title><rect x="905.7" y="37" width="22.6" height="15.0" fill="rgb(244,150,12)" rx="2" ry="2" />
+<text  x="908.74" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:                           kallsyms pathname at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (67 samples, 1.56%)</title><rect x="504.7" y="37" width="18.5" height="15.0" fill="rgb(253,192,29)" rx="2" ry="2" />
+<text  x="507.70" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --show-mmap-events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (78 samples, 1.82%)</title><rect x="862.2" y="37" width="21.5" height="15.0" fill="rgb(228,166,2)" rx="2" ry="2" />
+<text  x="865.22" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line: 				d:	    		create a debug log at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (59 samples, 1.38%)</title><rect x="73.9" y="37" width="16.3" height="15.0" fill="rgb(211,17,18)" rx="2" ry="2" />
+<text  x="76.90" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -k, --vmlinux &lt;file&gt;  vmlinux pathname at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (26 samples, 0.61%)</title><rect x="1146.2" y="37" width="7.2" height="15.0" fill="rgb(253,191,26)" rx="2" ry="2" />
+<text  x="1149.20" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -i, --input &lt;file&gt;    input file name at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (24 samples, 0.56%)</title><rect x="1139.6" y="37" width="6.6" height="15.0" fill="rgb(227,105,20)" rx="2" ry="2" />
+<text  x="1142.59" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Only print symbols and callees with --call-trace/--call-ret-trace at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (43 samples, 1.00%)</title><rect x="313.3" y="37" width="11.8" height="15.0" fill="rgb(231,215,43)" rx="2" ry="2" />
+<text  x="316.26" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --show-round-events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (80 samples, 1.87%)</title><rect x="883.7" y="37" width="22.0" height="15.0" fill="rgb(254,11,21)" rx="2" ry="2" />
+<text  x="886.71" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line: 				x:	    		synthesize transactions events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (55 samples, 1.28%)</title><rect x="216.6" y="37" width="15.1" height="15.0" fill="rgb(247,216,24)" rx="2" ry="2" />
+<text  x="219.58" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --header          Show data header. at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (44 samples, 1.03%)</title><rect x="642.7" y="37" width="12.1" height="15.0" fill="rgb(252,9,49)" rx="2" ry="2" />
+<text  x="645.69" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -a, --all-cpus        system-wide collection from all CPUs at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (12 samples, 0.28%)</title><rect x="1117.6" y="37" width="3.3" height="15.0" fill="rgb(240,187,37)" rx="2" ry="2" />
+<text  x="1120.56" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Show round events (if recorded) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (81 samples, 1.89%)</title><rect x="380.5" y="37" width="22.3" height="15.0" fill="rgb(219,213,39)" rx="2" ry="2" />
+<text  x="383.47" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:                           only consider symbols in these tids at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (91 samples, 2.12%)</title><rect x="543.3" y="37" width="25.0" height="15.0" fill="rgb(206,227,6)" rx="2" ry="2" />
+<text  x="546.26" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line: 				r:	    		synthesize branches events (returns only) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (54 samples, 1.26%)</title><rect x="169.2" y="37" width="14.9" height="15.0" fill="rgb(251,131,20)" rx="2" ry="2" />
+<text  x="172.21" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Show the fork/comm/exit events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (85 samples, 1.98%)</title><rect x="402.8" y="37" width="23.4" height="15.0" fill="rgb(217,151,46)" rx="2" ry="2" />
+<text  x="405.78" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:     -f, --force           don't complain, do it at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (19 samples, 0.44%)</title><rect x="1128.9" y="37" width="5.2" height="15.0" fill="rgb(240,208,19)" rx="2" ry="2" />
+<text  x="1131.85" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -v, --verbose         be more verbose (show symbol address, etc) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (32 samples, 0.75%)</title><rect x="1169.1" y="37" width="8.8" height="15.0" fill="rgb(207,153,3)" rx="2" ry="2" />
+<text  x="1172.07" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Enable kernel symbol demangling at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (39 samples, 0.91%)</title><rect x="264.2" y="37" width="10.8" height="15.0" fill="rgb(254,87,41)" rx="2" ry="2" />
+<text  x="267.23" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -S, --symbols &lt;symbol[,symbol...]&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (30 samples, 0.70%)</title><rect x="1109.3" y="37" width="8.3" height="15.0" fill="rgb(243,118,40)" rx="2" ry="2" />
+<text  x="1112.30" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -G, --hide-call-graph at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (22 samples, 0.51%)</title><rect x="1088.9" y="37" width="6.1" height="15.0" fill="rgb(214,68,21)" rx="2" ry="2" />
+<text  x="1091.91" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				i:	    		synthesize instructions events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (51 samples, 1.19%)</title><rect x="122.7" y="37" width="14.0" height="15.0" fill="rgb(209,28,38)" rx="2" ry="2" />
+<text  x="125.66" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --full-source-path at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (40 samples, 0.93%)</title><rect x="620.1" y="37" width="11.0" height="15.0" fill="rgb(214,106,40)" rx="2" ry="2" />
+<text  x="623.11" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --xed[=...]       Run xed disassembler on output at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (93 samples, 2.17%)</title><rect x="1049.5" y="37" width="25.6" height="15.0" fill="rgb(242,47,20)" rx="2" ry="2" />
+<text  x="1052.52" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:                           Show the path of [kernel.kallsyms] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (75 samples, 1.75%)</title><rect x="448.0" y="37" width="20.6" height="15.0" fill="rgb(212,127,14)" rx="2" ry="2" />
+<text  x="450.96" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --max-blocks &lt;n&gt;  Maximum number of code blocks to dump with brstackinsn at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (68 samples, 1.59%)</title><rect x="724.5" y="37" width="18.7" height="15.0" fill="rgb(251,48,41)" rx="2" ry="2" />
+<text  x="727.50" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				e:	    		synthesize error events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (58 samples, 1.35%)</title><rect x="90.2" y="37" width="15.9" height="15.0" fill="rgb(233,37,15)" rx="2" ry="2" />
+<text  x="93.15" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --pid &lt;pid[,pid...]&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (72 samples, 1.68%)</title><rect x="801.1" y="37" width="19.8" height="15.0" fill="rgb(250,35,31)" rx="2" ry="2" />
+<text  x="804.07" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --graph-function &lt;symbol[,symbol...]&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (42 samples, 0.98%)</title><rect x="631.1" y="37" width="11.6" height="15.0" fill="rgb(227,129,13)" rx="2" ry="2" />
+<text  x="634.13" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -g, --gen-script &lt;lang&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (20 samples, 0.47%)</title><rect x="1134.1" y="37" width="5.5" height="15.0" fill="rgb(214,148,29)" rx="2" ry="2" />
+<text  x="1137.08" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -D, --dump-raw-trace  dump raw trace in ASCII at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (17 samples, 0.40%)</title><rect x="1079.3" y="37" width="4.7" height="15.0" fill="rgb(243,4,35)" rx="2" ry="2" />
+<text  x="1082.27" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --ns              Use 9 decimal places when displaying time at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (70 samples, 1.63%)</title><rect x="762.2" y="37" width="19.3" height="15.0" fill="rgb(244,28,19)" rx="2" ry="2" />
+<text  x="765.24" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --stop-bt &lt;symbol[,symbol...]&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (86 samples, 2.01%)</title><rect x="951.5" y="37" width="23.7" height="15.0" fill="rgb(254,198,11)" rx="2" ry="2" />
+<text  x="954.47" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:         --show-lost-events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (76 samples, 1.77%)</title><rect x="841.3" y="37" width="20.9" height="15.0" fill="rgb(243,196,52)" rx="2" ry="2" />
+<text  x="844.29" y="47.5" ></text>
+</g>
+<g >
+<title>all (4,284 samples, 100%)</title><rect x="10.0" y="53" width="1180.0" height="15.0" fill="rgb(213,118,15)" rx="2" ry="2" />
+<text  x="13.00" y="63.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -F, --fields &lt;str&gt;    comma separated output fields prepend with 'type:'. +field to add and -field to remove.Valid types: hw,sw,trace,raw,synth. Fields: comm,tid,pid,time,cpu,event,trace,ip,sym,dso,addr,symoff,srcline,period,iregs,uregs,brstack,brstacksym,flags,brstackinsn,brstackoff,callindent,insn,insnlen,synth,phys_addr,metric,misc at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (18 samples, 0.42%)</title><rect x="1084.0" y="37" width="4.9" height="15.0" fill="rgb(237,65,8)" rx="2" ry="2" />
+<text  x="1086.95" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:  Usage: perf script [&lt;options&gt;] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (6 samples, 0.14%)</title><rect x="1188.3" y="37" width="1.7" height="15.0" fill="rgb(222,120,15)" rx="2" ry="2" />
+<text  x="1191.35" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				PERIOD[ns|us|ms|i|t]:   specify period to sample stream at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (63 samples, 1.47%)</title><rect x="10.0" y="37" width="17.4" height="15.0" fill="rgb(239,19,46)" rx="2" ry="2" />
+<text  x="13.00" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				c:	    		synthesize branches events (calls only) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (53 samples, 1.24%)</title><rect x="41.7" y="37" width="14.6" height="15.0" fill="rgb(227,157,53)" rx="2" ry="2" />
+<text  x="44.68" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --itrace[=&lt;opts&gt;] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (49 samples, 1.14%)</title><rect x="692.8" y="37" width="13.5" height="15.0" fill="rgb(238,190,37)" rx="2" ry="2" />
+<text  x="695.82" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --insn-trace[=...] at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (47 samples, 1.10%)</title><rect x="679.9" y="37" width="12.9" height="15.0" fill="rgb(227,92,52)" rx="2" ry="2" />
+<text  x="682.88" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --max-stack &lt;n&gt;   Set the maximum stack depth when parsing the callchain, anything beyond the specified depth will be ignored. Default: kernel.perf_event_max_stack or 127 at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (69 samples, 1.61%)</title><rect x="743.2" y="37" width="19.0" height="15.0" fill="rgb(216,139,39)" rx="2" ry="2" />
+<text  x="746.23" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --demangle        Enable symbol demangling at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (37 samples, 0.86%)</title><rect x="599.4" y="37" width="10.2" height="15.0" fill="rgb(216,161,9)" rx="2" ry="2" />
+<text  x="602.45" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line: 				l[len]:     		synthesize last branch entries (use with i or x) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (61 samples, 1.42%)</title><rect x="136.7" y="37" width="16.8" height="15.0" fill="rgb(208,148,13)" rx="2" ry="2" />
+<text  x="139.70" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Decode calls and returns from itrace at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (34 samples, 0.79%)</title><rect x="231.7" y="37" width="9.4" height="15.0" fill="rgb(237,205,5)" rx="2" ry="2" />
+<text  x="234.73" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     or: perf script [&lt;options&gt;] &lt;script&gt; [&lt;record-options&gt;] &lt;command&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (9 samples, 0.21%)</title><rect x="1177.9" y="37" width="2.5" height="15.0" fill="rgb(216,2,30)" rx="2" ry="2" />
+<text  x="1180.88" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:     -I, --show-info       display extended information from perf.data file at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (25 samples, 0.58%)</title><rect x="1095.0" y="37" width="6.9" height="15.0" fill="rgb(226,203,51)" rx="2" ry="2" />
+<text  x="1097.97" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --tid &lt;tid[,tid...]&gt; at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (90 samples, 2.10%)</title><rect x="999.4" y="37" width="24.8" height="15.0" fill="rgb(241,134,17)" rx="2" ry="2" />
+<text  x="1002.39" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line:     -s, --script &lt;name&gt;   script file name (lang:script name, script name, or *) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (29 samples, 0.68%)</title><rect x="1161.1" y="37" width="8.0" height="15.0" fill="rgb(214,80,15)" rx="2" ry="2" />
+<text  x="1164.08" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Show lost events (if recorded) at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (77 samples, 1.80%)</title><rect x="359.3" y="37" width="21.2" height="15.0" fill="rgb(248,117,12)" rx="2" ry="2" />
+<text  x="362.26" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:                           Look for files with symbols relative to this directory at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (89 samples, 2.08%)</title><rect x="288.7" y="37" width="24.6" height="15.0" fill="rgb(244,207,13)" rx="2" ry="2" />
+<text  x="291.75" y="47.5" >U..</text>
+</g>
+<g >
+<title>Unrecognized line: 				w:	    		synthesize ptwrite events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (56 samples, 1.31%)</title><rect x="201.2" y="37" width="15.4" height="15.0" fill="rgb(205,100,46)" rx="2" ry="2" />
+<text  x="204.16" y="47.5" ></text>
+</g>
+<g >
+<title>Unrecognized line:         --show-task-events at ../FlameGraph/stackcollapse-perf.pl line 429, &lt;&gt; line (84 samples, 1.96%)</title><rect x="928.3" y="37" width="23.2" height="15.0" fill="rgb(234,27,17)" rx="2" ry="2" />
+<text  x="931.33" y="47.5" >U..</text>
+</g>
+</g>
+</svg>

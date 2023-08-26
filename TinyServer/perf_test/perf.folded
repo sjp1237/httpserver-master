@@ -1,0 +1,88 @@
+Unrecognized line:   Error: Couldn't find script `script' at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 1.
+Unrecognized line:  See perf script -l for available scripts. at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 3.
+Unrecognized line:  Usage: perf script [<options>] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 6.
+Unrecognized line:     or: perf script [<options>] record <script> [<record-options>] <command> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 7.
+Unrecognized line:     or: perf script [<options>] report <script> [script-args] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 8.
+Unrecognized line:     or: perf script [<options>] <script> [<record-options>] <command> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 9.
+Unrecognized line:     or: perf script [<options>] <top-script> [script-args] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 10.
+Unrecognized line:     -a, --all-cpus        system-wide collection from all CPUs at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 12.
+Unrecognized line:     -c, --comms <comm[,comm...]> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 13.
+Unrecognized line:                           only display events for these comms at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 14.
+Unrecognized line:     -C, --cpu <cpu>       list of cpus to profile at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 15.
+Unrecognized line:     -d, --debug-mode      do various checks like samples ordering and lost events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 16.
+Unrecognized line:     -D, --dump-raw-trace  dump raw trace in ASCII at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 17.
+Unrecognized line:     -F, --fields <str>    comma separated output fields prepend with 'type:'. +field to add and -field to remove.Valid types: hw,sw,trace,raw,synth. Fields: comm,tid,pid,time,cpu,event,trace,ip,sym,dso,addr,symoff,srcline,period,iregs,uregs,brstack,brstacksym,flags,brstackinsn,brstackoff,callindent,insn,insnlen,synth,phys_addr,metric,misc at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 18.
+Unrecognized line:     -f, --force           don't complain, do it at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 19.
+Unrecognized line:     -g, --gen-script <lang> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 20.
+Unrecognized line:                           generate perf-script.xx script in specified language at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 21.
+Unrecognized line:     -G, --hide-call-graph at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 22.
+Unrecognized line:                           When printing symbols do not display call chain at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 23.
+Unrecognized line:     -i, --input <file>    input file name at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 24.
+Unrecognized line:     -I, --show-info       display extended information from perf.data file at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 25.
+Unrecognized line:     -k, --vmlinux <file>  vmlinux pathname at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 26.
+Unrecognized line:     -L, --Latency         show latency attributes (irqs/preemption disabled, etc) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 27.
+Unrecognized line:     -l, --list            list available scripts at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 28.
+Unrecognized line:     -s, --script <name>   script file name (lang:script name, script name, or *) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 29.
+Unrecognized line:     -S, --symbols <symbol[,symbol...]> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 30.
+Unrecognized line:                           only consider these symbols at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 31.
+Unrecognized line:     -v, --verbose         be more verbose (show symbol address, etc) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 32.
+Unrecognized line:         --call-ret-trace[=...] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 33.
+Unrecognized line:                           Decode calls and returns from itrace at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 34.
+Unrecognized line:         --call-trace[=...] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 35.
+Unrecognized line:                           Decode calls from from itrace at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 36.
+Unrecognized line:         --demangle        Enable symbol demangling at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 37.
+Unrecognized line:         --demangle-kernel at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 38.
+Unrecognized line:                           Enable kernel symbol demangling at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 39.
+Unrecognized line:         --full-source-path at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 40.
+Unrecognized line:                           Show full source file name path for source lines at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 41.
+Unrecognized line:         --graph-function <symbol[,symbol...]> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 42.
+Unrecognized line:                           Only print symbols and callees with --call-trace/--call-ret-trace at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 43.
+Unrecognized line:         --header          Show data header. at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 44.
+Unrecognized line:         --header-only     Show only data header. at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 45.
+Unrecognized line:         --inline          Show inline function at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 46.
+Unrecognized line:         --insn-trace[=...] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 47.
+Unrecognized line:                           Decode instructions from itrace at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 48.
+Unrecognized line:         --itrace[=<opts>] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 49.
+Unrecognized line:                           Instruction Tracing options at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 50.
+Unrecognized line: 				i:	    		synthesize instructions events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 51.
+Unrecognized line: 				b:	    		synthesize branches events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 52.
+Unrecognized line: 				c:	    		synthesize branches events (calls only) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 53.
+Unrecognized line: 				r:	    		synthesize branches events (returns only) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 54.
+Unrecognized line: 				x:	    		synthesize transactions events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 55.
+Unrecognized line: 				w:	    		synthesize ptwrite events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 56.
+Unrecognized line: 				p:	    		synthesize power events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 57.
+Unrecognized line: 				e:	    		synthesize error events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 58.
+Unrecognized line: 				d:	    		create a debug log at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 59.
+Unrecognized line: 				g[len]:     		synthesize a call chain (use with i or x) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 60.
+Unrecognized line: 				l[len]:     		synthesize last branch entries (use with i or x) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 61.
+Unrecognized line: 				sNUMBER:    		skip initial number of events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 62.
+Unrecognized line: 				PERIOD[ns|us|ms|i|t]:   specify period to sample stream at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 63.
+Unrecognized line: 				concatenate multiple options. Default is ibxwpe or cewp at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 64.
+Unrecognized line:         --kallsyms <file> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 66.
+Unrecognized line:                           kallsyms pathname at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 67.
+Unrecognized line:         --max-blocks <n>  Maximum number of code blocks to dump with brstackinsn at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 68.
+Unrecognized line:         --max-stack <n>   Set the maximum stack depth when parsing the callchain, anything beyond the specified depth will be ignored. Default: kernel.perf_event_max_stack or 127 at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 69.
+Unrecognized line:         --ns              Use 9 decimal places when displaying time at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 70.
+Unrecognized line:         --per-event-dump  Dump trace output to files named by the monitored events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 71.
+Unrecognized line:         --pid <pid[,pid...]> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 72.
+Unrecognized line:                           only consider symbols in these pids at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 73.
+Unrecognized line:         --show-kernel-path at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 74.
+Unrecognized line:                           Show the path of [kernel.kallsyms] at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 75.
+Unrecognized line:         --show-lost-events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 76.
+Unrecognized line:                           Show lost events (if recorded) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 77.
+Unrecognized line:         --show-mmap-events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 78.
+Unrecognized line:                           Show the mmap events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 79.
+Unrecognized line:         --show-round-events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 80.
+Unrecognized line:                           Show round events (if recorded) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 81.
+Unrecognized line:         --show-switch-events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 82.
+Unrecognized line:                           Show context switch events (if recorded) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 83.
+Unrecognized line:         --show-task-events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 84.
+Unrecognized line:                           Show the fork/comm/exit events at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 85.
+Unrecognized line:         --stop-bt <symbol[,symbol...]> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 86.
+Unrecognized line:                           Stop display of callgraph at these symbols at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 87.
+Unrecognized line:         --symfs <directory> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 88.
+Unrecognized line:                           Look for files with symbols relative to this directory at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 89.
+Unrecognized line:         --tid <tid[,tid...]> at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 90.
+Unrecognized line:                           only consider symbols in these tids at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 91.
+Unrecognized line:         --time <str>      Time span of interest (start,stop) at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 92.
+Unrecognized line:         --xed[=...]       Run xed disassembler on output at ../FlameGraph/stackcollapse-perf.pl line 429, <> line 93.

@@ -1,0 +1,1164 @@
+2023-08-20 01:47:13.346211 [debug]: url: /login
+2023-08-20 01:47:13.346243 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 01:47:13.350879 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 01:47:13.350932 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 01:47:13.677020 [debug]: url: /myfiles?cmd=count
+2023-08-20 01:47:13.677078 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 01:47:13.677104 [erro]: unknow cmd: 
+2023-08-20 01:47:13.677154 [erro]: start null
+
+2023-08-20 01:47:13.677171 [erro]: decodeFileslistJson failed
+2023-08-20 01:55:35.313776 [debug]: url: /myfiles?cmd=count
+2023-08-20 01:55:35.313804 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:14:55.212880 [debug]: url: /login
+2023-08-20 02:14:55.212929 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:14:55.213665 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 02:14:55.213704 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 02:14:55.489926 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:14:55.489984 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:15:06.566425 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:15:06.566477 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:15:06.566508 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:15:06.566518 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:17:01.762589 [debug]: url: /login
+2023-08-20 02:17:01.762631 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:17:01.768960 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 02:17:01.768983 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 02:17:02.688680 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:17:02.688747 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:17:16.655113 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:17:16.655160 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:17:29.438658 [debug]: url: /myfiles?cmd=normal
+2023-08-20 02:17:29.438719 [debug]: post data: {
+    "count": 7,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:19:47.404393 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:19:47.404440 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:22:03.827530 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:22:03.827565 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:24:55.089752 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:24:55.089784 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:26:17.775113 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:26:17.775146 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:29:01.181398 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:29:01.181437 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:31:35.231436 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:31:35.231473 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:31:35.274939 [debug]: url: /myfiles?cmd=normal
+2023-08-20 02:31:35.275000 [debug]: post data: {
+    "count": 7,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:38:58.690405 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:38:58.690465 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:38:58.714218 [debug]: url: /myfiles?cmd=normal
+2023-08-20 02:38:58.714297 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:39:06.413419 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:39:06.413476 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:39:06.453521 [debug]: url: /myfiles?cmd=pvasc
+2023-08-20 02:39:06.453558 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:39:08.612921 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:39:08.612979 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:39:08.654290 [debug]: url: /myfiles?cmd=pvdesc
+2023-08-20 02:39:08.654343 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:43:27.237501 [debug]: url: /sharefiles?cmd=count
+2023-08-20 02:43:27.350194 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 02:43:27.350249 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:43:27.655154 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:43:27.655214 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:43:27.688515 [debug]: url: /myfiles?cmd=normal
+2023-08-20 02:43:27.688573 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:43:28.084048 [debug]: url: /sharefiles?cmd=count
+2023-08-20 02:43:28.170706 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 02:43:28.170762 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 02:43:28.593095 [debug]: url: /myfiles?cmd=count
+2023-08-20 02:43:28.593159 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:05:22.164728 [debug]: url: /login
+2023-08-20 04:05:22.164769 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:05:22.165828 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 04:05:22.165870 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 04:05:22.475335 [debug]: url: /myfiles?cmd=count
+2023-08-20 04:05:22.475416 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:05:22.492974 [debug]: url: /myfiles?cmd=count
+2023-08-20 04:05:22.493028 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:05:22.496002 [debug]: url: /myfiles?cmd=normal
+2023-08-20 04:05:22.496026 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:46:53.176118 [debug]: url: /myfiles?cmd=count
+2023-08-20 04:46:53.176147 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:46:53.197070 [debug]: url: /myfiles?cmd=normal
+2023-08-20 04:46:53.197101 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 04:57:13.348012 [debug]: url: /dealfile?cmd=del
+2023-08-20 04:57:13.348043 [debug]: post data: {
+    "filename": "111.rtf",
+    "md5": "2d89927537c612318c2acc4b61f79945",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 05:01:43.098581 [erro]: select count from user_file_count where user = 'xxx_share_xxx_file_xxx_list_xxx_count_xxx'
+2023-08-20 05:07:42.685643 [debug]: url: /dealfile?cmd=del
+2023-08-20 05:07:42.685672 [debug]: post data: {
+    "filename": "111.rtf",
+    "md5": "2d89927537c612318c2acc4b61f79945",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 05:11:19.896602 [debug]: url: /dealfile?cmd=del
+2023-08-20 05:11:19.896635 [debug]: post data: {
+    "filename": "cloud_server.sql",
+    "md5": "b9fb3a7f456e1662d194b62d8912bbee",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 05:40:32.254748 [debug]: url: /dealfile?cmd=del
+2023-08-20 05:40:32.254776 [debug]: post data: {
+    "filename": "nginx.conf",
+    "md5": "8042e7ce971b568143c3db2ee1dd5234",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 05:40:39.017979 [debug]: url: /dealfile?cmd=share
+2023-08-20 05:40:39.018025 [debug]: post data: {
+    "filename": "cloud_server.sql",
+    "md5": "b9fb3a7f456e1662d194b62d8912bbee",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 05:40:41.197788 [debug]: url: /sharefiles?cmd=count
+2023-08-20 05:40:41.255606 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 05:40:41.255648 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 05:40:43.220605 [debug]: url: /myfiles?cmd=count
+2023-08-20 05:40:43.220657 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:01:48.362657 [debug]: url: /dealfile?cmd=share
+2023-08-20 06:01:48.362705 [debug]: post data: {
+    "filename": "111.rtf",
+    "md5": "2d89927537c612318c2acc4b61f79945",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:01:48.363339 [warn]: 别人已经分享此文件
+2023-08-20 06:01:56.850376 [debug]: url: /md5
+2023-08-20 06:01:56.850443 [debug]: post data: {
+    "fileName": "111.rtf",
+    "md5": "f62a1153ee395d8a731472725d0edd58",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:02:20.754602 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:02:20.754649 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:02:20.794889 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:02:20.794922 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:02:51.247751 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:02:51.247801 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:02:51.270751 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:02:51.270781 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:02:54.286764 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:02:54.286807 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:02:54.306705 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:02:54.306739 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:03:03.148867 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:03:03.148908 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:04:34.000086 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:04:34.000138 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:04:34.017961 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:04:34.018019 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:04:36.166673 [debug]: url: /login
+2023-08-20 06:04:36.166726 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:04:36.167471 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 06:04:36.167493 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 06:04:36.218682 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:04:36.218749 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:04:36.269910 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:04:36.269982 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:04:43.885330 [debug]: url: /md5
+2023-08-20 06:04:43.885393 [debug]: post data: {
+    "fileName": "沈家鹏+202022210218+包装机械工厂参观实验报告.doc",
+    "md5": "697bed673b8061471b3d04144fa4050e",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:12:42.439026 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:12:42.439058 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:12:42.460161 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:12:42.460197 [debug]: post data: {
+    "count": 2,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:16.742282 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:13:16.742343 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:16.763823 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:13:16.763852 [debug]: post data: {
+    "count": 2,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:22.562130 [debug]: url: /login
+2023-08-20 06:13:22.562183 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:22.562962 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 06:13:22.562988 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 06:13:22.614674 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:13:22.614723 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:22.643596 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:13:22.643633 [debug]: post data: {
+    "count": 2,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:29.376452 [debug]: url: /md5
+2023-08-20 06:13:29.376497 [debug]: post data: {
+    "fileName": "沈家鹏+202022210218+包装工艺实验报告.doc",
+    "md5": "e9f32a97b8bde8cdbda5c2481dc77e6f",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:44.812138 [debug]: url: /upload
+2023-08-20 06:13:44.812179 [debug]: post data: --------WebKitFormBoundarySqskfZQu3I0MuUVi
+Content-Disposition: form-data; name="file_name"
+
+沈家鹏+202022210218+包装工艺实验报告.doc
+--------WebKitFormBoundarySqskfZQu3I0MuUVi
+Content-Disposition: form-data; name="file_content_type"
+
+
+--------WebKitFormBoundarySqskfZQu3I0MuUVi
+Content-Disposition: form-data; name="file_path"
+
+/home/sjp/TinyWebserver/tmp/1/0024977051
+--------WebKitFormBoundarySqskfZQu3I0MuUVi
+Content-Disposition: form-data; name="file_md5"
+
+16ad8d58f3ee2dde9e06db4f88df9f5c
+--------WebKitFormBoundarySqskfZQu3I0MuUVi
+Content-Disposition: form-data; name="file_size"
+
+5907294
+--------WebKitFormBoundarySqskfZQu3I0MuUVi
+Content-Disposition: form-data; name="user"
+
+zhangsan
+--------WebKitFormBoundarySqskfZQu3I0MuUVi--
+
+2023-08-20 06:13:45.215558 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:13:45.215615 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:13:45.244320 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:13:45.244361 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:23.963480 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:14:23.963529 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:24.036641 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:14:24.036720 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:28.015070 [debug]: url: /md5
+2023-08-20 06:14:28.015148 [debug]: post data: {
+    "fileName": "沈家鹏+202022210218+包装工艺实验报告.doc",
+    "md5": "e9f32a97b8bde8cdbda5c2481dc77e6f",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:33.279358 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:14:33.279416 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:33.365020 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:14:33.365067 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:39.208951 [debug]: url: /sharefiles?cmd=count
+2023-08-20 06:14:39.353738 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:14:39.353790 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:39.424036 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:14:39.424077 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:39.572738 [debug]: url: /upload
+2023-08-20 06:14:39.572793 [debug]: post data: --------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds
+Content-Disposition: form-data; name="file_name"
+
+沈家鹏+202022210218+包装工艺实验报告.doc
+--------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds
+Content-Disposition: form-data; name="file_content_type"
+
+
+--------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds
+Content-Disposition: form-data; name="file_path"
+
+/home/sjp/TinyWebserver/tmp/2/0024977052
+--------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds
+Content-Disposition: form-data; name="file_md5"
+
+16ad8d58f3ee2dde9e06db4f88df9f5c
+--------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds
+Content-Disposition: form-data; name="file_size"
+
+5907294
+--------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds
+Content-Disposition: form-data; name="user"
+
+zhangsan
+--------WebKitFormBoundaryZqI6r6AXJOLbZ7Ds--
+
+2023-08-20 06:14:39.935739 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:14:39.935797 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:39.985822 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:14:39.985882 [debug]: post data: {
+    "count": 4,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:42.950740 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:14:42.950793 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:43.013462 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:14:43.013525 [debug]: post data: {
+    "count": 4,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:14:59.965735 [debug]: url: /md5
+2023-08-20 06:14:59.965799 [debug]: post data: {
+    "fileName": "environment.zip",
+    "md5": "a26a64580b1ec5943cd9062529fd9cfb",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:02.374840 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:15:02.374892 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:02.438988 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:15:02.439048 [debug]: post data: {
+    "count": 4,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:17.925944 [debug]: url: /dealfile?cmd=del
+2023-08-20 06:15:17.926007 [debug]: post data: {
+    "filename": "沈家鹏+202022210218+包装工艺实验报告.doc",
+    "md5": "16ad8d58f3ee2dde9e06db4f88df9f5c",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:18.151809 [debug]: url: /sharefiles?cmd=count
+2023-08-20 06:15:20.211728 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:15:20.211775 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:20.291722 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:15:20.291755 [debug]: post data: {
+    "count": 3,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:22.240725 [debug]: url: /dealfile?cmd=del
+2023-08-20 06:15:22.240791 [debug]: post data: {
+    "filename": "沈家鹏+202022210218+包装机械工厂参观实验报告.doc",
+    "md5": "f149b10eaa3e191ac023f33e54895962",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:24.842734 [debug]: url: /dealfile?cmd=del
+2023-08-20 06:15:24.842795 [debug]: post data: {
+    "filename": "cloud_server.sql",
+    "md5": "b9fb3a7f456e1662d194b62d8912bbee",
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:44.712880 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:15:44.712950 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:44.771278 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:15:44.771353 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:55.152737 [debug]: url: /sharefiles?cmd=count
+2023-08-20 06:15:55.602728 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:15:55.602782 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:55.667132 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:15:55.667194 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:59.106730 [debug]: url: /sharefiles?cmd=count
+2023-08-20 06:15:59.508725 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:15:59.508772 [debug]: post data: {
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:59.570728 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:15:59.570786 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "nwlrbbmqbhcdarzowkkyhiddqscdxrjm",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:15:59.908723 [debug]: url: /sharefiles?cmd=count
+2023-08-20 06:17:01.626870 [debug]: url: /login
+2023-08-20 06:17:01.626921 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:01.627641 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 06:17:01.627663 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 06:17:02.028725 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:17:02.028775 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:02.053724 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:17:02.053751 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:02.128729 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:17:02.128780 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:02.140809 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:17:02.140834 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:06.209724 [debug]: url: /md5
+2023-08-20 06:17:06.209772 [debug]: post data: {
+    "fileName": "analyjsondata.h",
+    "md5": "f985b1f35a08740f45a4b16c922b453c",
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:06.309720 [debug]: url: /upload
+2023-08-20 06:17:06.309753 [debug]: post data: --------WebKitFormBoundaryjc9Ra7AmmDQqcgCg
+Content-Disposition: form-data; name="file_name"
+
+analyjsondata.h
+--------WebKitFormBoundaryjc9Ra7AmmDQqcgCg
+Content-Disposition: form-data; name="file_content_type"
+
+
+--------WebKitFormBoundaryjc9Ra7AmmDQqcgCg
+Content-Disposition: form-data; name="file_path"
+
+/home/sjp/TinyWebserver/tmp/3/0024977053
+--------WebKitFormBoundaryjc9Ra7AmmDQqcgCg
+Content-Disposition: form-data; name="file_md5"
+
+6b7847748a0f6278e7ce07fd6486c7d1
+--------WebKitFormBoundaryjc9Ra7AmmDQqcgCg
+Content-Disposition: form-data; name="file_size"
+
+351
+--------WebKitFormBoundaryjc9Ra7AmmDQqcgCg
+Content-Disposition: form-data; name="user"
+
+zhangsan
+--------WebKitFormBoundaryjc9Ra7AmmDQqcgCg--
+
+2023-08-20 06:17:06.510725 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:17:06.510792 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:06.587728 [debug]: url: /myfiles?cmd=normal
+2023-08-20 06:17:06.587775 [debug]: post data: {
+    "count": 2,
+    "start": 0,
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:12.735734 [debug]: url: /dealfile?cmd=share
+2023-08-20 06:17:12.735785 [debug]: post data: {
+    "filename": "analyjsondata.h",
+    "md5": "6b7847748a0f6278e7ce07fd6486c7d1",
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 06:17:15.987843 [debug]: url: /sharefiles?cmd=count
+2023-08-20 06:17:16.450738 [debug]: url: /myfiles?cmd=count
+2023-08-20 06:17:16.450810 [debug]: post data: {
+    "token": "owfrxsjybldbefsarcbynecdyggxxpkl",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:33.801282 [debug]: url: /login
+2023-08-20 21:05:33.801316 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:33.817370 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:33.818011 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:33.922633 [debug]: url: /login
+2023-08-20 21:05:33.922670 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:33.923425 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:33.923449 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:33.985275 [debug]: url: /login
+2023-08-20 21:05:33.985339 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:33.986022 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:33.986043 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:34.070502 [debug]: url: /login
+2023-08-20 21:05:34.070554 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:34.071114 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:34.071137 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:36.064317 [debug]: url: /login
+2023-08-20 21:05:36.064385 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:36.065132 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:36.065154 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:42.585530 [debug]: url: /login
+2023-08-20 21:05:42.585582 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:42.586344 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:42.586368 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:53.625748 [debug]: url: /login
+2023-08-20 21:05:53.625804 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:53.626546 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:53.626568 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:05:54.007332 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:05:54.007385 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:54.040435 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:05:54.040490 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:54.045962 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:05:54.045987 [debug]: post data: {
+    "count": 2,
+    "start": 0,
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:54.061204 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:05:54.061234 [debug]: post data: {
+    "count": 2,
+    "start": 0,
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:55.917214 [debug]: url: /dealfile?cmd=del
+2023-08-20 21:05:55.917287 [debug]: post data: {
+    "filename": "analyjsondata.h",
+    "md5": "6b7847748a0f6278e7ce07fd6486c7d1",
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:05:59.867932 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:06:00.927140 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:06:01.599733 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:06:01.599778 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:06:01.688721 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:06:01.688772 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:27.398741 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:07:28.399727 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:28.399785 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:28.493049 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:28.493098 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:28.589413 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:28.589473 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:28.671737 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:28.671798 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:28.889735 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:07:29.257745 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:29.257812 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:29.333724 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:29.333782 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:29.412745 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:29.412811 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:07:29.488111 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:07:29.488173 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:11:00.024742 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:11:00.961724 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:11:12.483718 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:11:12.977721 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:11:12.977776 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:11:13.077718 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:11:13.077761 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:11:13.155721 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:11:13.155761 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:11:13.236721 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:11:13.236767 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:12:31.695729 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:12:33.290081 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:12:33.290141 [debug]: post data: {
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:12:33.675723 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:16:00.222725 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 21:16:00.222783 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "jxkitzyxacbhhkicqcoendtomfgdwdwf",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:35.384638 [debug]: url: /login
+2023-08-20 21:32:35.384670 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:35.385494 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.385544 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.495769 [debug]: url: /login
+2023-08-20 21:32:35.495826 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:35.496549 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.496572 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.554181 [debug]: url: /login
+2023-08-20 21:32:35.554226 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:35.554925 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.554946 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.607783 [debug]: url: /login
+2023-08-20 21:32:35.607830 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:35.608454 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:35.608476 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:40.201774 [debug]: url: /login
+2023-08-20 21:32:40.201826 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:40.202583 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:40.202606 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:44.952808 [debug]: url: /login
+2023-08-20 21:32:44.952862 [debug]: post data: {
+    "pwd": "e10adc3949ba59abbe56e057f20f883e",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:44.953633 [debug]: mysql-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:44.953655 [debug]:  user-pwd: e10adc3949ba59abbe56e057f20f883e
+2023-08-20 21:32:45.025981 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:32:45.026032 [debug]: post data: {
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:45.043768 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:32:45.043816 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:47.152008 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:32:47.152060 [debug]: post data: {
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:47.208414 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:32:47.208472 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:32:47.635422 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:32:49.432748 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:34:03.549028 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:34:03.549066 [debug]: post data: {
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:34:03.601862 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:34:03.601921 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:34:03.800154 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:34:05.583542 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:34:49.224841 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:34:49.224873 [debug]: post data: {
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:34:49.255098 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:34:49.255152 [debug]: post data: {
+    "count": 1,
+    "start": 0,
+    "token": "bsaqxwpqcacehchzvfrkmlnozjkpqpxr",
+    "user": "zhangsan"
+}
+
+2023-08-20 21:34:49.886397 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:35:08.557120 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:35:55.447433 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:45:27.031477 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:45:27.031561 [erro]: parse reg json failed 
+2023-08-20 21:45:27.031611 [erro]: decodeCountJson failed
+2023-08-20 21:45:27.050488 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 21:45:38.652046 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:45:38.736783 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:45:42.013624 [debug]: url: /md5
+2023-08-20 21:45:42.082921 [debug]: url: /upload
+2023-08-20 21:45:42.517512 [debug]: url: /myfiles?cmd=count
+2023-08-20 21:45:42.541555 [debug]: url: /myfiles?cmd=normal
+2023-08-20 21:45:44.938323 [debug]: url: /dealfile?cmd=share
+2023-08-20 21:45:46.686399 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:45:46.686486 [erro]: parse reg json failed 
+2023-08-20 21:45:46.686510 [erro]: decodeCountJson failed
+2023-08-20 21:45:46.706192 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 21:45:48.516974 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:45:48.517044 [erro]: parse reg json failed 
+2023-08-20 21:45:48.517069 [erro]: decodeCountJson failed
+2023-08-20 21:45:48.536310 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 21:45:50.668816 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:45:50.668892 [erro]: parse reg json failed 
+2023-08-20 21:45:50.668916 [erro]: decodeCountJson failed
+2023-08-20 21:45:50.686800 [debug]: url: /sharefiles?cmd=normal
+2023-08-20 21:58:41.084943 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:58:41.085010 [erro]: parse reg json failed 
+2023-08-20 21:58:41.085033 [erro]: decodeCountJson failed
+2023-08-20 21:59:49.141085 [debug]: url: /sharefiles?cmd=count
+2023-08-20 21:59:49.141191 [erro]: parse reg json failed 
+2023-08-20 21:59:49.141273 [erro]: decodeCountJson failed
+2023-08-20 22:00:25.134910 [debug]: url: /sharefiles?cmd=count
+2023-08-20 22:00:25.134981 [erro]: parse reg json failed 
+2023-08-20 22:00:25.135037 [erro]: decodeCountJson failed
